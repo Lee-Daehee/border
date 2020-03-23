@@ -1,0 +1,51 @@
+{% extends 'mainIndex.html' %}
+{% block content %}
+{% load staticfiles %}
+<div align="center">
+<label><h1>Border 상세 페이지</h1><br></label>
+</div>
+<div>
+    <div>
+        <label>제목 : </label>
+        <input type="text" class="form-control" value="{{ border.제목 }}" disabled>
+    </div>
+    <br>
+    <div>
+        <label>수정일 : </label>
+        <input type="text" class="form-control" value="{{ border.수정일 }}" disabled>
+    </div>
+    <br>
+    <div>
+        <label>내용 : </label>
+        <textarea rows="5" class="form-control" disabled>{{ border.내용 }}"</textarea>
+    </div>
+    <br>
+    <div>
+        <label>파일 : </label>
+    </div>
+    <br>
+    <div align="center">
+    <button type="button" name="good" onclick="document.location.href='{% url 'BD:G' border.id %}'"><img src="{% static 'good.png' %}" width="30">&nbsp{{ border.좋아요}} </button>&nbsp
+    <button type="button" name="hate" onclick="document.location.href='{% url 'BD:H' border.id %}'"><img src="{% static 'hate.png' %}" width="30">&nbsp{{ border.싫어요}} </button>
+    </div>
+    <br>
+    <div>
+        {% for file in dirList %}
+        <button type="button" class="btn btn-primary onclick"="document.location.href='{% url 'UD:D' border.id file %}'">{{ file }}</button>
+        {% endfor %}
+    </div>
+    <br>
+    <div>
+    {% if user.username == border.작성자 %}
+        <button class="btn btn-primary btn-sm" type="button" onclick="document.location.href='{% url 'BD:U' border.id %}'">수정</button>
+        <button class="btn btn-danger btn-sm" type="button" onclick="document.location.href='{% url 'BD:L' border.id %}'">삭제</button>
+        <!-- btn-default : 흰색, btn-success : 초록색, btn-info : 하늘색 btn-primary : 파란색, btn-warning : 주황색, btn-danger : 빨간-->
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block menu_active %}
+    <script>
+        document.getElementById("border").className="active";
+    </script>
+{% endblock %}

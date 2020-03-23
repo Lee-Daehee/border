@@ -1,0 +1,35 @@
+{% extends "mainIndex.html" %}
+{% block content %}
+<head>
+    <title>{% block title %}전화번호부{% endblock %}</title>
+</head>
+<div align="center">
+    <label>book index(기본 페이지) 입니다.</label> 
+</div>
+<table class="table talbe-striped">
+    <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>전화번호</th>
+    </tr>
+        {% for values in phonebook %}
+        <tr>
+            <td>{{values.id}}</td>
+            <td><a href="{% url 'PB:D' values.id %}">{{ values.이름 }}</a></td>
+            <td>{{ values.전화번호 }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+        {% if user.is_active %}
+        <button type="button" onclick="document.location.href='{% url 'PB:A' %}'">추가</button>
+        {% else %}
+            <button type="button" onclick="document.location.href='{% url 'login' %}'">로그인</button>
+        {% endif %}
+    </ul>
+
+{% endblock %}
+{% block menu_active %}
+<script type="text/javascript">
+    document.getElementById("phone").className="active"
+</script>
+{% endblock %}

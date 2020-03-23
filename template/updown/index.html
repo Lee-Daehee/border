@@ -1,0 +1,7 @@
+updown index 페이지<br>
+{{ dirList }}
+    <ul>
+        {% for l in dirList %}
+            <li><a href="{% url 'UD:D' l %}">{{ l }}</a></li>
+        {% endfor %}
+    </ul>

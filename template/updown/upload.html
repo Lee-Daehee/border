@@ -1,0 +1,6 @@
+updown upload 페이지<br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="files" multiple>
+    <input type="submit" value="업로드">
+</form>
